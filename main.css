@@ -1,0 +1,51 @@
+
+*{
+  box-sizing: border-box;
+  height:100vh;
+
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.grid{
+height: 600px;
+width: 600px;
+display: flex;
+flex-flow: row wrap;
+border-style: none;
+margin-bottom: 30%;
+}
+
+.cell{
+
+height: 11.11%;
+width: 11.11%;
+border: solid 1px black;
+}
+
+.player{
+  background-color: red;
+}
+
+.spaceship {
+
+background-color: chartreuse;
+
+}
+
+.alien{
+
+  background-color: coral;
+}
+
+.bullet{
+background-color: darkgoldenrod;
+}
+
+
+
+
