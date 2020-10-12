@@ -50,28 +50,26 @@ document.addEventListener('keypress', (event) => {
     cells[player].classList.add('player')
   } else if (key === 's') {
     shoot()
-    killAlien()
   }
 })
 
 function shoot() {
-  let bullet = player
 
   for (let i = 0; i < 8; i++) {
     let bullet = player
     const interval = setInterval(() => {
-      if (bullet > 0) {
+      if (cells[bullet].classList.contains('alien')) {
+        cells[bullet].classList.remove('alien')
+        return
+      } else if (bullet > 0) {
         cells[bullet].classList.remove('bullet')
         bullet -= width
         cells[bullet].classList.add('bullet')
-      } else if (bullet < 0) {
+      } else {
         clearInterval(interval)
-      }
-    }, 200)
+      }}, 200)
   }
 }
 
-function killAlien(){
-  console.log(cells.innerHTML)
 
-}
+
