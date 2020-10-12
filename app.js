@@ -20,7 +20,7 @@ for (let i = 0; i < width ** 2; i++) {
 cells[player].classList.add('player')
 // ************************************
 
-function printAliens() {
+function printAliensOne() {
   for (let rows = 1; rows < 4; rows++)
     for (let i = 0; i < rows * width; i++) {
       if (i === width - 1 || i === 2 * width - 1 || i === 3 * width - 1) {
@@ -31,32 +31,34 @@ function printAliens() {
     }
 }
 
-printAliens()
+printAliensOne()
 
+// ******************************************
+{
+  document.addEventListener('keypress', (event) => {
 
+    const key = event.key
+    if (key === "a" && player > 72) {
+      console.log('working')
+      cells[player].classList.remove('player')
+      player -= 1
+      cells[player].classList.add('player')
+    } else if (key === "d" && player < 80) {
+      console.log('working')
+      cells[player].classList.remove('player')
+      player += 1
+      cells[player].classList.add('player')
+    } else if (key === 's') {
+      for (let i = 0; i < width; i++) {
+        let bullet = player
+        const interval = setInterval(() => {
+          cells[bullet].classList.remove('bullet')
+          bullet -= width
+          cells[bullet].classList.add('bullet')
 
-document.addEventListener('keypress', (event) => {
-  const key = event.key
+        }, 100)
+      }
 
-  if (key === "a") {
-    console.log('working')
-    cells[player].classList.remove('player')
-    player -= 1
-    cells[player].classList.add('player')
-  } else if (key === "d") {
-    console.log('working')
-    cells[player].classList.remove('player')
-    player += 1
-    cells[player].classList.add('player')
-  } else if (key === 's') {
-    for (let i = 0; i < width; i++) {
-      let bullet = player
-      const interval = setInterval(() => {
-        cells[bullet].classList.remove('bullet')
-        bullet -= width
-        cells[bullet].classList.add('bullet')
-      }, 100)
     }
-
-  }
-})
+  })
+} 
