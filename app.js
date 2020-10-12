@@ -55,21 +55,38 @@ document.addEventListener('keypress', (event) => {
 
 function shoot() {
 
-  for (let i = 0; i < 8; i++) {
-    let bullet = player
-    const interval = setInterval(() => {
-      if (cells[bullet].classList.contains('alien')) {
-        cells[bullet].classList.remove('alien')
-        return
-      } else if (bullet > 0) {
-        cells[bullet].classList.remove('bullet')
-        bullet -= width
-        cells[bullet].classList.add('bullet')
-      } else {
-        clearInterval(interval)
-      }}, 200)
-  }
+  let bullet = player
+  const interval = setInterval(() => {
+    if (cells[bullet].classList.contains('alien') || bullet < 0 ) {
+      cells[bullet].classList.remove('alien')
+      cells[bullet].classList.remove('bullet')
+      clearInterval(interval)
+
+    } else if (bullet > 0) {
+      cells[bullet].classList.remove('bullet')
+      bullet -= width
+      cells[bullet].classList.add('bullet')
+    }
+  }, 200)
 }
+
+
+
+
+
+      // if (cells[bullet].classList.contains('alien')) {
+        // cells[bullet].classList.remove('alien')
+        // clearInterval(interval)
+      // } else if (bullet  0) {
+        // cells[bullet].classList.remove('bullet')
+        // bullet -= width
+        // cells[bullet].classList.add('bullet')
+      // } else {
+        // clearInterval(interval)
+      // }
+    // }, 100)
+  // }
+// }
 
 
 
