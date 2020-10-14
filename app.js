@@ -1,17 +1,17 @@
+const body = document.querySelector('body')
 const width = 9
 const grid = document.querySelector('.grid')
 const squares = document.querySelector('cells')
 const cells = []
+const points = document.querySelector('.score')
 let deadAliens = []
 let score = 0
 let player = 76
 let direction = 1
 const screen = document.querySelector('h3')
 const alienArray = [
-  0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 23, 24, 25
+  25, 24, 23, 22, 21, 20, 19, 18, 16, 15, 14, 13, 12, 11, 10, 9, 7, 6, 5, 4, 3, 2, 1, 0
 ]
-
-
 
 for (let i = 0; i < width ** 2; i++) {
   const div = document.createElement('div')
@@ -20,45 +20,84 @@ for (let i = 0; i < width ** 2; i++) {
   cells.push(div)
   div.innerHTML = i
 }
+
 cells[player].classList.add('player')
 
 alienArray.forEach((alien) => { cells[alien].classList.add('alien') })
 
-const interval = setInterval(() => {
-  const leftOfGrid = (alienArray[0] % width === 0)
-  const rightOfGrid = (alienArray[alienArray.length - 1] % width === width - 1)
-  if ((leftOfGrid && direction === -1) || (rightOfGrid && direction === 1)) {
-    direction === width
-  } else if (direction === width) {
-    if (leftOfGrid) {
-      direction = 1
-    } else {
-      direction = -1
-    }
+function addAliens() {
+  for (let i = 0; i < alienArray.length; i++) {
+    cells[alienArray[i]].classList.add('alien')
   }
-  for (let i = 0; i <= alienArray.length - 1; i++) {
-    if (!deadAliens.includes(i)) {
-      cells[alienArray[i]].classList.remove('alien')
-      alienArray[i] += direction
-      cells[alienArray[i]].classList.add('alien')
-    }
+}
+function removeAliens() {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove('alien')
   }
-  
-  // if the alien and player are in the same box - GAME OVER
-  if (cells[player].classList.contains('alien', 'player')) {
-    screen.innerHTML = 'Game Over'
-    cells[player].classList.add('dead')
-    clearInterval(interval)
-  }
-  for (let i = 0; i <= alienArray.length - 1; i++) {
-    if (alienArray[i] > cells.length - (width - 1))
-      clearInterval(interval)
-    screen.innerHTML = 'Game Over'
-  }
-}, 500)
+}
 
+function moveAliens() {
+  const interval = setInterval(() => {
+    if (direction === 1) {
+      // if you hit the right border...
+      if (alienArray.some((alien) => alien % width === width - 1)) {
+        addAliens()
+        for (let i = 0; i < alienArray.length; i++) {
+          alienArray[i] += width
+        }
+        removeAliens()
+        addAliens()
+        direction = -1
+      } else {
+        removeAliens()
+        // loop over array adding one to move aliens right 
+        for (let i = 0; i < alienArray.length; i++) {
+          alienArray[i] += 1
+        }
+        // add aliens 
+        for (let i = 0; i < alienArray.length; i++) {
+          addAliens()
+        }
+      }
+    } else if (direction === -1) {
+      if (alienArray.some(alien => alien % width === 0)) {
+        addAliens()
+        for (let i = 0; i < alienArray.length; i++) {
+          alienArray[i] += width
+        }
+        removeAliens()
+        addAliens()
+        // then go right 
+        direction = 1
+      } else {
+        removeAliens()
+        // loop over array adding one to go left 
+        for (let i = 0; i < alienArray.length; i++) {
+          alienArray[i] -= 1
+        }
+        for (let i = 0; i < alienArray.length; i++) {
+          addAliens()
+        }
+      }
+    }
+
+    for (let i = 0; i <= alienArray.length - 1; i++) {
+      if (alienArray[i] > cells.length - (width - 1)) {
+        clearInterval(interval)
+        screen.innerHTML = 'Game Over'
+      }
+    }
+    if (cells[player].classList.contains('alien') && cells[player].classList.contains('player')) {
+      clearInterval(interval)
+      removeAliens()
+    }
+  }, 1000)
+}
+
+
+// 
 document.addEventListener('keypress', (event) => {
-//if keys are pressed, player moves, unless they have hit the side.
+
   const key = event.key
   if (key === "a" && player % width !== 0) {
     console.log('working')
@@ -74,40 +113,60 @@ document.addEventListener('keypress', (event) => {
     shoot()
   }
 })
-
 function shoot() {
-//bullet has to start from place player is
+
   let bullet = player
   const shootInterval = setInterval(() => {
 
     if (bullet < width) {
       clearInterval(shootInterval)
       cells[bullet].classList.remove('bullet')
-
+      clearInterval(shootInterval)
     }
-    //move bullet forward if it hasnt reached the last line
+
     if (bullet > 0) {
       cells[bullet].classList.remove('bullet')
       bullet -= width
       cells[bullet].classList.add('bullet')
 
     }
-    //if the bullet collides with and alien, remove the alien class
+
     if (cells[bullet].classList.contains('alien')) {
       cells[bullet].classList.remove('alien')
       cells[bullet].classList.remove('bullet')
       cells[bullet].classList.add('bulletHole')
-      //put the index of the shot alien in the array of Dead Aliens
-      const remove = alienInvaders.indexOf(bullet)
+      const gone = alienArray.indexOf(bullet)
+      alienArray.splice(1, gone)
       score++
-      deadAliens.push('remove')
-      screen.innerHTML = score
+      points.innerHTML = score
       clearInterval(shootInterval)
     }
-
+    if (cells[player].classList.contains('alien') && cells[player].classList.contains('player')) {
+      screen.innerHTML = 'Game Over'
+      cells[player].classList.add('dead')
+      clearInterval(shootInterval)
+      alienArray.querySelector.remove('alien')
+      
+      .classList.add('.dead')
+    }
   }, 200)
+
+  function dropBombs(){
+    setInterval(()=>{
+      randomNum = Math.random()*alienArray.length
+    let bomb = randomNum
+    if (bomb > 0){
+      cells[bomb].classList.remove('bomb')
+      bomb += width
+      cells[bomb].classList.add('bomb')
+    }
+    } ,200)
+    
+
+  }
+
+  if (score = alienArray.length) {
+    screen.innerHTML === 'You WIN!!'
+  }
 }
-// Player wins if they shoot all the aliens
-if (deadAliens.length === alienArray.length) {
-  screen.innerHTML === 'You WIN!!'
-}
+moveAliens()
