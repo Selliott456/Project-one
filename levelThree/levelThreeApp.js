@@ -1,7 +1,5 @@
 const h1 = document.querySelector('h1')
-const totalPoints = document.querySelector('.totalPoints')
-const audio = document.querySelector('audio')
-const levelButton = document.querySelector('a')
+const levelButton = document.querySelector('.level')
 const button = document.querySelector('button')
 const body = document.querySelector('body')
 const width = 9
@@ -15,10 +13,6 @@ let player = 76
 let winner = false
 let direction = 1
 const screen = document.querySelector('h3')
-let displayLives = document.querySelector('span.displayLives')
-
-displayLives.innerHTML = lives
-
 const alienArray = [
   25, 24, 23, 22, 21, 20, 19, 18, 16, 15, 14, 13, 12, 11, 10, 9, 7, 6, 5, 4, 3, 2, 1, 0
 ]
@@ -28,87 +22,57 @@ for (let i = 0; i < width ** 2; i++) {
   div.classList.add('cell')
   grid.appendChild(div)
   cells.push(div)
+  div.innerHTML = i
 }
 
 
 cells[player].classList.add('player')
 alienArray.forEach((alien) => { cells[alien].classList.add('alien') })
 
-
-button.addEventListener('click', (event) => {
-  audio.src = "ifICouldTurnBackTime.mp3"
-  audio.play()
-  body.appendChild(audio)
-})
-
-
-
 function dropBomb() {
-  let randomNum = Math.ceil(Math.random() * alienArray.length - 1)
-  let bomb = alienArray[randomNum]
+  if (!winner) {
+    let randomNum = Math.ceil(Math.random() * alienArray.length - 1)
+    let bomb = alienArray[randomNum]
 
-  const bombInterval = setInterval(() => {
+    const bombInterval = setInterval(() => {
 
-    if (bomb > 80) {
+      if (bomb > 80) {
+        
+        clearInterval(bombInterval)
+      }
+      if (bomb < 80) {
+        cells[bomb].classList.remove('bomb')
+        bomb += width
+        cells[bomb].classList.add('bomb')
+      }
 
-      clearInterval(bombInterval)
-    }
-    if (bomb < 81) {
-      cells[bomb].classList.remove('bomb')
-      bomb += width
-      cells[bomb].classList.add('bomb')
-    }
+      if (cells[bomb].classList.contains('player')) {
+        lives -= 1
+        cells[bomb].classList.remove('player')
+        cells[bomb].classList.remove('bomb')
+        cells[bomb].classList.add('player')
+      }
 
-    if (cells[bomb].classList.contains('player')) {
-      lives -= 1
-      cells[bomb].classList.remove('player')
-      cells[bomb].classList.remove('bomb')
-      cells[bomb].classList.add('player')
-      displayLives.innerHTML = lives
+      if (lives < 1) {
+        screen.innerHTML = "You died"
+        removeAliens()
+        clearInterval(bombInterval)
+        setTimeout(() => { location.reload() }, 400)
+      }
 
-    }
-    if (cells[player].classList.contains('alien') && cells[player].classList.contains('player') ){
-      screen.innerHTML = "You died"
-      clearInterval(bombInterval)
-      clearInterval(interval)
-      grid.classList.add('disappointedCher')
-      cells[bomb].classList.remove('bomb')
-      cells[player].classList.remove('player')
-    }
-    if (lives < 1) {
-      screen.innerHTML = "You died"
-      clearInterval(bombInterval)
-      clearInterval(interval)
-      grid.classList.add('disappointedCher')
-      cells[bomb].classList.remove('bomb')
-      cells[player].classList.remove('player')
-    }
-  }, 200)
-
+    }, 200)
+  }
 }
 
 
 function startBombs() {
-  const dropBombInterval = setInterval(() => {
-    if (lives > 0) {
-      dropBomb()
-    } else if (cells[player].classList.contains('alien') && cells[player].classList.contains('player') ){
-      screen.innerHTML = "You died"
-      clearInterval(dropBombInterval)
-      clearInterval(interval)
-      grid.classList.add('disappointedCher')
-      cells[bomb].classList.remove('bomb')
-      cells[player].classList.remove('player')
-    }
-    else{
-      grid.classList.add('disappointedCher')
-      removeAliens()
-      clearInterval(interval)
-      clearInterval(bombInterval)
-      clearInterval(dropBombInterval)
-    }
-  }, 2500)
-
+const dropBombInterval = setInterval(() => {
+  if (lives > 0) {
+    dropBomb()
+  } else {
+    clearInterval(dropBombInterval)
+  }
+}, 2500)
 }
 
 function addAliens() {
@@ -166,23 +130,22 @@ function moveAliens() {
         }
       }
     }
+
     for (let i = 0; i <= alienArray.length - 1; i++) {
-      if (alienArray[i] > cells.length - (width - 1) || (cells[player].classList.contains('alien') && cells[player].classList.contains('player'))) {
-        grid.classList.add('disappointedCher')
-        removeAliens()
+      if (alienArray[i] > cells.length - (width - 1)) {
         clearInterval(interval)
         screen.innerHTML = 'Game Over'
-        cell[player].classList.remove('player')
-        
       }
-    } if (lives< 1) {
-      cells[player].classList.remove('player')
-      removeAliens()
-      clearInterval(interval)
     }
-  }, 2000)
-
+    if (cells[player].classList.contains('alien') && cells[player].classList.contains('player')) {
+      clearInterval(interval)
+      removeAliens()
+    }
+  }, 2500)
 }
+
+
+
 
 
 document.addEventListener('keypress', (event) => {
@@ -226,29 +189,30 @@ function shoot() {
       const gone = alienArray.indexOf(bullet)
       alienArray.splice(gone, 1)
       points++
-      totalPoints.innerHTML = points
       clearInterval(shootInterval)
     }
 
-    if (points === 24) {
-      screen.innerHTML = 'You WIN!!'
-      levelButton.innerHTML = 'Play Again!'
-      levelButton.classList.add('levelTwo')
-      grid.classList.add('dancingCher')
-
-    }
-
-
-    if (cells['player'].classList.contains('alien') && cells[i].classList.contains('player')) {
+    if (cells[player].classList.contains('alien') && cells[player].classList.contains('player')) {
       screen.innerHTML = 'Game Over'
-      grid.classList.add('disappointedCher')
-      clearInterval(bombInterval)
+      cells[player].classList.add('dead')
+      clearInterval(shootInterval)
+      alienArray.querySelector.remove('alien')
+        .classList.add('.dead')
     }
+
+    console.log(points)
+    if (points === 24) {
+      screen.innerHTML ='You WIN!!'
+      levelButton.innerHTML = 'level 3'
+      levelButton.classList.add('level Three')
+    }
+
   }, 100)
 
 }
-
+ 
 button.addEventListener('click', () => {
-  startBombs()
+  startBombs() 
   moveAliens()
 })
+

@@ -1,0 +1,89 @@
+*{
+  box-sizing: border-box;
+  height:100vh;
+
+}
+
+h2{
+  color: white;
+  font-family:'Atomic Age', cursive; 
+}
+
+body{
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+h1{
+  font-size: 60px;
+  font-family: 'Atomic Age', cursive;
+  color:white;
+  margin-bottom:0px;
+  padding-bottom: 2px;
+}
+
+h3 {
+  font-family: 'Atomic Age', cursive;
+  color: white;
+  font-size: 30px;
+  padding-top: 0px;
+}
+.grid{
+height: 500px;
+width: 500px;
+display: flex;
+flex-flow: row wrap;
+border-style: none;
+margin-bottom: 30%;
+border-width: 0px;
+}
+
+.cell{
+
+height: 11.1%;
+width: 11.1%;
+border: solid 1px black;
+}
+
+.player{
+  background-image: url('cher.png') ;
+  background-size: cover;
+}
+
+.spaceship {
+
+background-color: chartreuse;
+
+}
+
+.alien{
+
+  background-image: url('https://media.giphy.com/media/Kvjugjvc1L9iE/giphy.gif');
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.bullet{
+background-color: orange;
+}
+
+.bulletHole {
+  background-color: white;
+}
+
+.dead {
+  background-color: black;
+}
+
+.bomb{
+  background-color: grey;
+}
+.levelTwo {
+  background-color: red;
+}
+
+.

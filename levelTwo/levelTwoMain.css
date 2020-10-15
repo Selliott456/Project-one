@@ -10,13 +10,12 @@ h2{
 }
 
 body{
-  background-image: url(boat.jpg);
+  background-image: url(stage.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 
 }
 h1{
@@ -34,14 +33,7 @@ h3 {
   font-size: 30px;
   padding-top: 0px;
 }
-h4 {
-  display: flex;
-  background: rgba(76, 175, 80, 0.1);
-  height:30px;
-  justify-content: center;
-}
 .grid{
- 
 margin-top: 20px;
 height: 500px;
 width: 500px;
@@ -100,16 +92,15 @@ border-radius: 100%;
 .levelTwo {
   font-family: 'Atomic Age', cursive;
   font-size: 20px;
-  color: black;
+  color: white;
+  display:flex;
   height: 100px;
   width: 100px;
   margin: 25px;
-  padding:20px 0 10px 20px;
-  background-color:white;
-  border-radius: 20%;
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
+  padding:0px;
+  background-color: red;
+  justify-content: center;
+  align-items: center;
 }
 
 .levelThree {
@@ -132,18 +123,4 @@ border-radius: 100%;
 .buttons {
   display: flex;
   flex-direction: column;
-}
-.dancingCher{
-
-background-image: url("cher.gif");
-background-position: top;
-background-repeat: no-repeat;
-
-}
-
-.disappointedCher{
-  background-image: url("https://media.giphy.com/media/9G2OSJEk2YM8g/giphy.gif");
-  background-position: top;
-  background-repeat: no-repeat;
-  
 }
