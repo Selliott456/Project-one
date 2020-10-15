@@ -244,6 +244,9 @@ function shoot() {
     }
 
     if (points === 24) {
+      audio.src = "applause.wav"
+  audio.play()
+  body.appendChild(audio)
       cells[player].classList.remove('player')
       button.innerHTML = "WOO HOO"
       screen.innerHTML = 'You WIN!!'
