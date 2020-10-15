@@ -1,47 +1,59 @@
 *{
   box-sizing: border-box;
-  height:100vh;
+  
 
 }
 
 h2{
   color: white;
   font-family:'Atomic Age', cursive; 
-}
+}  
 
-body{
+body {
+  height: 100%;
   background-image: url(boat.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  padding:0;
+  display:flex;
 
 }
 h1{
+  background-color:rgba(0, 0, 0, 0.3);
   text-shadow: rgb(41, 41, 41) 2px 2px;
+  padding: 40px;
   font-size: 60px;
   font-family: 'Atomic Age', cursive;
   color:white;
-  margin-bottom:0px;
-  padding-bottom: 2px;
+  border-radius: 20%;
 }
 
 h3 {
-  font-family: 'Atomic Age', cursive;
+  font-family: sans-serif;
+  font-weight: 80;
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   padding-top: 0px;
+  background-color:rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding:20px;
 }
 h4 {
   display: flex;
-  background: rgba(76, 175, 80, 0.1);
+  font-size: 20px;
+  border-radius: 20%;
+  font-family: 'Atomic Age', cursive;;
+  background: rgba(200, 200, 200, 0.5);
   height:30px;
   justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 .grid{
- 
+background-color: rgba(0, 0, 0, 0.2);
 margin-top: 20px;
 height: 500px;
 width: 500px;
@@ -50,6 +62,7 @@ flex-flow: row wrap;
 border-style: none;
 margin-bottom: 30%;
 border-width: 0px;
+border-radius: 10px;
 }
 
 .cell{
@@ -94,8 +107,10 @@ border-radius: 100%;
 }
 
 .bomb{
-  background-image: url(lightning.png);
+  background-image: url("cannonBall.png");
   background-size: cover;
+  border-radius: 100%;
+  background-position: center;
 }
 .levelTwo {
   font-family: 'Atomic Age', cursive;
@@ -105,7 +120,7 @@ border-radius: 100%;
   width: 100px;
   margin: 25px;
   padding:20px 0 10px 20px;
-  background-color:white;
+  background-color:rgba(200, 200, 200, 0.5);
   border-radius: 20%;
   display: flex;
   flex-direction: row;
@@ -117,33 +132,56 @@ border-radius: 100%;
   color: white;
 }
 
-.start {
+button {
+  border-radius: 20%;
+  background-color: rgba(200, 200, 200, 0.5);
   font-family: 'Atomic Age', cursive;
   font-size: 20px;
-  height: 100px;
-  width: 100px;
-  margin:25px;
-  padding:0px;
+  margin-right:50px;
+  margin-bottom: 20px;
+  padding:50px;
 }
 .game {
   display: flex;
   flex-direction: row;
+  justify-items: center;
 }
 .buttons {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .dancingCher{
-
+background-size: cover;
 background-image: url("cher.gif");
 background-position: top;
 background-repeat: no-repeat;
 
+
 }
 
 .disappointedCher{
+
   background-image: url("https://media.giphy.com/media/9G2OSJEk2YM8g/giphy.gif");
   background-position: top;
   background-repeat: no-repeat;
-  
+  background-size: cover;
+}
+
+.sidebar {
+  font-size: 20px;
+  border-radius: 40%;
+  font-family: 'Atomic Age', cursive;;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40px;;
+}
+button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+a:hover{
+  background-color: rgba(0, 0, 0, 0.3); 
 }

@@ -44,11 +44,12 @@ button.addEventListener('click', (event) => {
 
 
 function dropBomb() {
+
   let randomNum = Math.ceil(Math.random() * alienArray.length - 1)
   let bomb = alienArray[randomNum]
 
   const bombInterval = setInterval(() => {
-
+    
     if (bomb > 80) {
 
       clearInterval(bombInterval)
@@ -74,6 +75,7 @@ function dropBomb() {
       grid.classList.add('disappointedCher')
       cells[bomb].classList.remove('bomb')
       cells[player].classList.remove('player')
+      button.innerHTML = "Oh no!"
     }
     if (lives < 1) {
       screen.innerHTML = "You died"
@@ -82,6 +84,7 @@ function dropBomb() {
       grid.classList.add('disappointedCher')
       cells[bomb].classList.remove('bomb')
       cells[player].classList.remove('player')
+      button.innerHTML = "Oh no!"
     }
   }, 200)
 
@@ -99,6 +102,7 @@ function startBombs() {
       grid.classList.add('disappointedCher')
       cells[bomb].classList.remove('bomb')
       cells[player].classList.remove('player')
+      button.innerHTML = "Refresh to play again!"
     }
     else{
       grid.classList.add('disappointedCher')
@@ -106,6 +110,7 @@ function startBombs() {
       clearInterval(interval)
       clearInterval(bombInterval)
       clearInterval(dropBombInterval)
+      button.innerHTML = "Refresh to play again!"
     }
   }, 2500)
 
@@ -168,15 +173,23 @@ function moveAliens() {
     }
     for (let i = 0; i <= alienArray.length - 1; i++) {
       if (alienArray[i] > cells.length - (width - 1) || (cells[player].classList.contains('alien') && cells[player].classList.contains('player'))) {
+        audio.src = "collision.wav"
+        audio.play()
+        body.appendChild(audio)
         grid.classList.add('disappointedCher')
         removeAliens()
         clearInterval(interval)
         screen.innerHTML = 'Game Over'
-        cell[player].classList.remove('player')
+        cells[player].classList.remove('player')
+        levelButton.innerHTML = 'Play Again!'
+      levelButton.classList.add('levelTwo')
+      button.innerHTML = "Oh no!"
         
       }
     } if (lives< 1) {
       cells[player].classList.remove('player')
+      levelButton.innerHTML = 'Play Again!'
+      levelButton.classList.add('levelTwo')
       removeAliens()
       clearInterval(interval)
     }
@@ -231,6 +244,8 @@ function shoot() {
     }
 
     if (points === 24) {
+      cells[player].classList.remove('player')
+      button.innerHTML = "WOO HOO"
       screen.innerHTML = 'You WIN!!'
       levelButton.innerHTML = 'Play Again!'
       levelButton.classList.add('levelTwo')
@@ -240,6 +255,7 @@ function shoot() {
 
 
     if (cells['player'].classList.contains('alien') && cells[i].classList.contains('player')) {
+      cells[player].classList.remove('player')
       screen.innerHTML = 'Game Over'
       grid.classList.add('disappointedCher')
       clearInterval(bombInterval)
@@ -252,3 +268,4 @@ button.addEventListener('click', () => {
   startBombs()
   moveAliens()
 })
+
