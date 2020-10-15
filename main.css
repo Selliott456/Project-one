@@ -1,4 +1,3 @@
-
 *{
   box-sizing: border-box;
   height:100vh;
@@ -11,7 +10,7 @@ h2{
 }
 
 body{
-  
+  background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -83,6 +82,3 @@ background-color: orange;
 .bomb{
   background-color: grey;
 }
-
-
-
