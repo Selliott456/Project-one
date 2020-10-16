@@ -36,7 +36,7 @@ alienArray.forEach((alien) => { cells[alien].classList.add('alien') })
 
 
 button.addEventListener('click', (event) => {
-  audio.src = "./IfICouldTurnBackTime.mp3"
+  audio.src = "./ifICouldTurnBackTime.mp3"
   audio.play()
   body.appendChild(audio)
 })
