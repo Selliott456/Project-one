@@ -193,7 +193,7 @@ function moveAliens() {
       removeAliens()
       clearInterval(interval)
     }
-  }, 2000)
+  }, 1600)
 
 }
 
