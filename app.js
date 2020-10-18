@@ -1,7 +1,7 @@
 const h1 = document.querySelector('h1')
 const totalPoints = document.querySelector('.totalPoints')
 const audio = document.querySelector('audio')
-const levelButton = document.querySelector('a')
+const levelButton = document.querySelector('.level')
 const button = document.querySelector('button')
 const body = document.querySelector('body')
 const width = 9
@@ -16,6 +16,7 @@ let winner = false
 let direction = 1
 const screen = document.querySelector('h3')
 let displayLives = document.querySelector('span.displayLives')
+const playAgain = document.querySelector('.playAgain')
 
 displayLives.innerHTML = lives
 
@@ -36,9 +37,9 @@ alienArray.forEach((alien) => { cells[alien].classList.add('alien') })
 
 
 button.addEventListener('click', (event) => {
-  audio.src = "./IfICouldTurnBackTime.mp3"
-  audio.play()
-  body.appendChild(audio)
+audio.src = "./IfICouldTurnBackTime.mp3"
+audio.play()
+body.appendChild(audio)
 })
 
 
@@ -49,7 +50,7 @@ function dropBomb() {
   let bomb = alienArray[randomNum]
 
   const bombInterval = setInterval(() => {
-    
+
     if (bomb > 80) {
 
       clearInterval(bombInterval)
@@ -60,32 +61,22 @@ function dropBomb() {
       cells[bomb].classList.add('bomb')
     }
 
-    if (cells[bomb].classList.contains('player')) {
+    if (cells[player].classList.contains('bomb')) {
       lives -= 1
-      cells[bomb].classList.remove('player')
-      cells[bomb].classList.remove('bomb')
-      cells[bomb].classList.add('player')
       displayLives.innerHTML = lives
 
     }
-    if (cells[player].classList.contains('alien') && cells[player].classList.contains('player') ){
+    if ((cells[player].classList.contains('alien') && cells[player].classList.contains('player')) || lives < 1) {
       screen.innerHTML = "You died"
       clearInterval(bombInterval)
-      clearInterval(interval)
       grid.classList.add('disappointedCher')
       cells[bomb].classList.remove('bomb')
       cells[player].classList.remove('player')
       button.innerHTML = "Oh no!"
+      playAgain.classList.add('levelTwo')
+      playAgain.innerHTML = "Play Again"
     }
-    if (lives < 1) {
-      screen.innerHTML = "You died"
-      clearInterval(bombInterval)
-      clearInterval(interval)
-      grid.classList.add('disappointedCher')
-      cells[bomb].classList.remove('bomb')
-      cells[player].classList.remove('player')
-      button.innerHTML = "Oh no!"
-    }
+
   }, 200)
 
 }
@@ -95,22 +86,12 @@ function startBombs() {
   const dropBombInterval = setInterval(() => {
     if (lives > 0) {
       dropBomb()
-    } else if (cells[player].classList.contains('alien') && cells[player].classList.contains('player') ){
+    } else if ((cells[player].classList.contains('alien') && cells[player].classList.contains('player')) || lives < 1) {
       screen.innerHTML = "You died"
       clearInterval(dropBombInterval)
-      clearInterval(interval)
       grid.classList.add('disappointedCher')
       cells[bomb].classList.remove('bomb')
       cells[player].classList.remove('player')
-      button.innerHTML = "Refresh to play again!"
-    }
-    else{
-      grid.classList.add('disappointedCher')
-      removeAliens()
-      clearInterval(interval)
-      clearInterval(bombInterval)
-      clearInterval(dropBombInterval)
-      button.innerHTML = "Refresh to play again!"
     }
   }, 2500)
 
@@ -173,23 +154,20 @@ function moveAliens() {
     }
     for (let i = 0; i <= alienArray.length - 1; i++) {
       if (alienArray[i] > cells.length - (width - 1) || (cells[player].classList.contains('alien') && cells[player].classList.contains('player'))) {
-        audio.src = "collision.wav"
-        audio.play()
-        body.appendChild(audio)
         grid.classList.add('disappointedCher')
         removeAliens()
         clearInterval(interval)
         screen.innerHTML = 'Game Over'
         cells[player].classList.remove('player')
-        levelButton.innerHTML = 'Play Again!'
-      levelButton.classList.add('levelTwo')
-      button.innerHTML = "Oh no!"
-        
+        playAgain.innerHTML = 'Play Again!'
+        playAgain.classList.add('levelTwo')
+        button.innerHTML = "Oh no!"
+
       }
-    } if (lives< 1) {
+    } if (lives < 1) {
       cells[player].classList.remove('player')
-      levelButton.innerHTML = 'Play Again!'
-      levelButton.classList.add('levelTwo')
+      playAgain.innerHTML = 'Play Again!'
+      playAgain.classList.add('levelTwo')
       removeAliens()
       clearInterval(interval)
     }
@@ -220,13 +198,13 @@ function shoot() {
   let bullet = player
   const shootInterval = setInterval(() => {
 
-    if (bullet < width) {
+    if (bullet < -1) {
       clearInterval(shootInterval)
       cells[bullet].classList.remove('bullet')
       clearInterval(shootInterval)
     }
 
-    if (bullet > 0) {
+    if (bullet > -1) {
       cells[bullet].classList.remove('bullet')
       bullet -= width
       cells[bullet].classList.add('bullet')
@@ -245,19 +223,19 @@ function shoot() {
 
     if (points === 24) {
       audio.src = "applause.wav"
-  audio.play()
-  body.appendChild(audio)
+      audio.play()
+      body.appendChild(audio)
       cells[player].classList.remove('player')
       button.innerHTML = "WOO HOO"
       screen.innerHTML = 'You WIN!!'
-      levelButton.innerHTML = 'Play Again!'
+      levelButton.innerHTML = 'Level Two!'
       levelButton.classList.add('levelTwo')
       grid.classList.add('dancingCher')
 
     }
 
 
-    if (cells['player'].classList.contains('alien') && cells[i].classList.contains('player')) {
+    if (cells[player].classList.contains('alien')) {
       cells[player].classList.remove('player')
       screen.innerHTML = 'Game Over'
       grid.classList.add('disappointedCher')

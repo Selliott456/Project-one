@@ -1,39 +1,65 @@
 *{
   box-sizing: border-box;
-  height:100vh;
 
 }
 
 h2{
   color: white;
-  font-family:'Atomic Age', cursive; 
-}
+  font-family: 'Nunito Sans', sans-serif;
+}  
 
-body{
-  background-image: url(stage.jpg);
+body {
+  height: 100%;
+  background-image: url('cinema.jpg');
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding:0;
+  display:flex;
 
 }
 h1{
+  background-color:rgba(0, 0, 0, 0.3);
   text-shadow: rgb(41, 41, 41) 2px 2px;
-  font-size: 60px;
-  font-family: 'Atomic Age', cursive;
-  color:white;
-  margin-bottom:0px;
-  padding-bottom: 2px;
+  padding: 10px;
+  font-size: 40px;
+  font-family: 'Nunito Sans', sans-serif;
+
+  color: rgb(255, 196, 0);
+  border-radius: 20%;
+  margin-bottom: 0px;
+  margin-top: 0px
 }
 
 h3 {
-  font-family: 'Atomic Age', cursive;
-  color: white;
-  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: 80;
+  color:rgb(255, 196, 0);
+  font-size: 20px;
   padding-top: 0px;
+  background-color:rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding:20px;
+  margin: 0px
+}
+h4 {
+  display: flex;
+  font-size: 20px;
+  border-radius: 20%;
+  font-family: 'Nunito Sans', sans-serif;
+  background: rgba(200, 200, 200, 0.7);
+  height:30px;
+  justify-content: center;
+  align-items: center;
+  padding:20px;
+  
+  margin-top: 0px;
 }
 .grid{
+background-color: rgba(200, 200, 200, 0.3);
 margin-top: 20px;
 height: 500px;
 width: 500px;
@@ -42,6 +68,7 @@ flex-flow: row wrap;
 border-style: none;
 margin-bottom: 30%;
 border-width: 0px;
+border-radius: 10px;
 }
 
 .cell{
@@ -52,7 +79,7 @@ width: 11.1%;
 }
 
 .player{
-  background-image: url('cher.jpg') ;
+  background-image: url('moonStruck.jpg') ;
   background-size: cover;
   border-radius: 40%;
 }
@@ -65,42 +92,41 @@ background-color: chartreuse;
 
 .alien{
 
-  background-image: url('https://media.giphy.com/media/ns60OiQSlDK3S/giphy.gif');
+  background-image: url('glenClose.jpg');
   background-size: cover;
   background-position: center;
   border-radius: 100%;
 }
 
 .bullet{
-background-image: url("cd.jpg");
+background-image: url("oscar.png");
 background-size: cover;
-border-radius: 100%;
+
 }
 
 .bulletHole {
   background-color: white;
 }
 
-.dead {
-  background-color: black;
-}
-
 .bomb{
-  background-image: url(lightning.png);
+  background-image: url("bunny.png");
   background-size: cover;
+  border-radius: 100%;
+  background-position: center;
 }
 .levelTwo {
-  font-family: 'Atomic Age', cursive;
+  font-family: 'Nunito Sans', sans-serif;
   font-size: 20px;
-  color: white;
-  display:flex;
+  color: black;
   height: 100px;
   width: 100px;
   margin: 25px;
-  padding:0px;
-  background-color: red;
-  justify-content: center;
-  align-items: center;
+  padding:20px 0 10px 20px;
+  background-color:rgba(200, 200, 200, 0.7);
+  border-radius: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
 }
 
 .levelThree {
@@ -108,19 +134,63 @@ border-radius: 100%;
   color: white;
 }
 
-.start {
-  font-family: 'Atomic Age', cursive;
+button {
+  border-radius: 20%;
+  border-color: goldenrod;
+  background-color: rgba(200, 200, 200, 0.7);
+  font-family: 'Nunito Sans', sans-serif;
   font-size: 20px;
-  height: 100px;
-  width: 100px;
-  margin:25px;
-  padding:0px;
+  margin-top: 40px;
+  margin-right:50px;
+  margin-bottom: 20px;
+  padding:40px 20px;
 }
 .game {
   display: flex;
   flex-direction: row;
+  justify-items: center;
+  margin-top: 0px;
 }
 .buttons {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding:10px;
+}
+.dancingCher{
+background-size: cover;
+background-image: url("cher.gif");
+background-position: top;
+background-repeat: no-repeat;
+
+
+}
+
+.disappointedCher{
+
+  background-image: url("https://media.giphy.com/media/9G2OSJEk2YM8g/giphy.gif");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section.sidebar {
+  font-size: 20px;
+  border-radius: 10px;
+  font-family: 'Atomic Age', cursive;;font-family: 'Nunito Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40px;
+  padding: 20px;
+}
+button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+a:hover{
+  background-color: rgba(0, 0, 0, 0.3); 
+  color: white;
 }

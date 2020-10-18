@@ -1,6 +1,5 @@
 *{
   box-sizing: border-box;
-  
 
 }
 
@@ -49,15 +48,16 @@ h4 {
   font-size: 20px;
   border-radius: 20%;
   font-family: 'Atomic Age', cursive;;
-  background: rgba(200, 200, 200, 0.5);
+  background: rgba(200, 200, 200, 0.7);
   height:30px;
   justify-content: center;
   align-items: center;
+  padding:20px;
   
   margin-top: 0px;
 }
 .grid{
-background-color: rgba(0, 0, 0, 0.2);
+background-color: rgba(200, 200, 200, 0.3);
 margin-top: 20px;
 height: 500px;
 width: 500px;
@@ -106,10 +106,6 @@ border-radius: 100%;
   background-color: white;
 }
 
-.dead {
-  background-color: black;
-}
-
 .bomb{
   background-image: url("cannonBall.png");
   background-size: cover;
@@ -124,7 +120,7 @@ border-radius: 100%;
   width: 100px;
   margin: 25px;
   padding:20px 0 10px 20px;
-  background-color:rgba(200, 200, 200, 0.5);
+  background-color:rgba(200, 200, 200, 0.7);
   border-radius: 20%;
   display: flex;
   flex-direction: row;
@@ -138,12 +134,13 @@ border-radius: 100%;
 
 button {
   border-radius: 20%;
-  background-color: rgba(200, 200, 200, 0.5);
+  background-color: rgba(200, 200, 200, 0.7);
   font-family: 'Atomic Age', cursive;
   font-size: 20px;
+  margin-top: 40px;
   margin-right:50px;
   margin-bottom: 20px;
-  padding:20px;
+  padding:40px 20px;
 }
 .game {
   display: flex;
@@ -155,6 +152,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding:10px;
 }
 .dancingCher{
 background-size: cover;
@@ -173,15 +171,16 @@ background-repeat: no-repeat;
   background-size: cover;
 }
 
-.sidebar {
+section.sidebar {
   font-size: 20px;
-  border-radius: 40%;
+  border-radius: 10px;
   font-family: 'Atomic Age', cursive;;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 40px;;
+  margin-right: 40px;
+  padding: 20px;
 }
 button:hover {
   background-color: rgba(0, 0, 0, 0.3);
