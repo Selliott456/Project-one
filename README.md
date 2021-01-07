@@ -48,6 +48,7 @@ The movement of the bombs and the player missiles were achieved in much the same
 
 ### 4 - Move the invaders
 I found this exceptionally challenging. Initially I tried to attack it using a for loop but ended up creating some weird effects. The easiest way from me to fix the problem was to make separate functions to add and remove aliens, while changing the direction. rows were skipped by adding grid width the the index.js were the aliens were. I'm sure there is a nicer way to do this, but I was concerned I would not have an MVP in time for launch so I used this as it works and styled to project a little before deployment. 
+
 ![screenshot of code for moving aliens](moveAliens.png)
 
 ### Bugs/Code issues
