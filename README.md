@@ -54,6 +54,9 @@ I found this exceptionally challenging. Initially I tried to attack it using a f
 ### Bugs/Code issues
 From time to time, a random cannonball is left at the bottom of the grid for a moment after the game is finished. I think this is an issue with clearing an interval in the right area that I've failed to spot. That said, initially I was taking the new-comer approach and sometimes putting clearIntervals in places just to "see what happened". As such - there may be one or two still floating about that I never spotted when I was refactoring my code. 
 
+### Key learnings
+The main benefit of creating this project was actually not to do with the languages/working of the project itself (although this went a huge way to cementing my understanding of callback functions and DOM manipulation) but more the appreciation it gave me for the planning stage of creating a project from scratch. I was really important to make sure I had planned each element of the game before I tried to code anything. I was also really grateful for the opportunity to practice using setIntervals.
+
 ### Conclusion
 I made this within 3 weeks of writing my first line of code in JS so I'm really proud of it in spite of its little issues. I also think it represents my sense of humour to be hailing an iconic 80's moment in the history of a one-word diva during a coding class. I hope you enjoy playing it!
 
